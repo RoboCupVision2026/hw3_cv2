@@ -1,0 +1,14 @@
+import cv2
+from c_Canny import Canny
+import numpy as np
+
+img = cv2.imread('./homework3/bird.jpg', cv2.IMREAD_GRAYSCALE)
+
+M  = Canny(img).apply_Canny(low=110 ,high=320)
+
+disp = cv2.normalize(M, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+cv2.imshow('Canny result', disp)
+key = cv2.waitKey(0)
+if key == ord('s'):
+    cv2.imwrite('Canny_result.jpg', disp)
+cv2.destroyAllWindows()
